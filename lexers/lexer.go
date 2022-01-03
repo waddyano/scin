@@ -21,11 +21,17 @@ func NewLexer(filename string, input []byte) *Lexer {
 		return nil
 	}
 
+	// Skip BOM if there but keep all byte offsets in file correct
+	cur := 0
+	if len(input) > 3 && input[0] == 0xef && input[1] == 0xbb && input[2] == 0xbf {
+		cur = 3
+	}
+
 	in := &Input{
 		filename: filename,
 		file:     nil,
 		data:     input,
-		cursor:   0,
+		cursor:   cur,
 		marker:   0,
 		token:    -1,
 		limit:    len(input),

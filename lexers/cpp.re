@@ -167,7 +167,7 @@ func cpp_lex(in *Input) TokenType {
         wsp { in.bol = was_bol; continue }
 		newline { in.bol = true; in.line += 1; continue }
 
-        * { fmt.Printf("%s: %d: match %2x\n", in.filename, in.line, peek(in)); continue }
+        * { fmt.Printf("%s: %d: match %2x\n", in.filename, in.line, in.data[in.cursor-1])); continue }
         $ { return END }
 
         "@" { continue } // Objective-c
