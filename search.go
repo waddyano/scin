@@ -78,7 +78,7 @@ var searchCmd = &cobra.Command{
 			f.Close()
 			last_line := -1
 			for _, ftl := range match.FieldTermLocations {
-				fmt.Printf("%s: %d\n", ftl.Field, ftl.Location.Start)
+				//fmt.Printf("%s: %d\n", ftl.Field, ftl.Location.Start)
 				idx := sort.Search(len(linemap)/2, func(i int) bool { return uint32(ftl.Location.Start) >= linemap[2*i] })
 				off := 0
 				if idx < len(linemap)/2 {
